@@ -14,7 +14,7 @@ export default function SnakeGame() {
 
   const [food, setFood] = useState({ x: 0, y: 0 });
   const [direction, setDirection] = useState(snakeDirection);
-  const [gameOver, setGameOver] = useState(false);
+  // const [gameOver, setGameOver] = useState(false);
 
   async function moveSnake() {
     const newSnake = [...snake];
@@ -37,6 +37,7 @@ export default function SnakeGame() {
         break;
     }
 
+
     if (
       head.x < 0 ||
       head.x >= gridSize ||
@@ -44,7 +45,10 @@ export default function SnakeGame() {
       head.y >= gridSize ||
       newSnake.some((segment) => segment.x === head.x && segment.y === head.y)
     ) {
-      setGameOver(true);
+      // setGameOver(true);
+      window.location.reload()
+      startGame()
+      alert('Game Over')
       return;
     }
 
@@ -108,7 +112,7 @@ export default function SnakeGame() {
         <h1 className="text-center mb-2">Snake Game</h1>
 
         <div className="border">
-          {gameOver && (
+          {/* {gameOver && (
             <div className="absolute flex flex-col justify-center items-center gap-5 inset-0 z-10  backdrop-blur-sm ">
               <p className="text-red-500 font-semibold text-4xl"> Game Over </p>
               <button
@@ -119,7 +123,7 @@ export default function SnakeGame() {
                 Start again
               </button>
             </div>
-          )}
+          )} */}
           {Array.from({ length: gridSize }).map((_, y) => (
             <div key={y} className="flex">
               {Array.from({ length: gridSize }).map((_, x) => (
